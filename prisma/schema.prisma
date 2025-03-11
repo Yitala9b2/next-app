@@ -1,0 +1,41 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+//model User {
+//    id Int @id @default(autoincrement())
+//    fullName String
+//    email String
+//    password String
+//    createdAt DateTime
+//    updatedAt DateTime @updatedAt
+//}
+model Todo {
+    id         String   @id @default(uuid()) @db.Uuid
+    content    String
+    completed  Boolean  @default(false)
+    created_at DateTime @default(now())
+}
+
+model Post {
+    id           Int               @id @default(autoincrement())
+    createdAt    DateTime          @default(now())
+    translations PostTranslation[]
+}
+
+model PostTranslation {
+    id       Int    @id @default(autoincrement())
+    language String // 'en', 'ru'
+    title    String
+    content  String
+
+    post   Post? @relation(fields: [postId], references: [id], onDelete: Cascade)
+    postId Int?
+
+    @@unique([postId, language]) // Один перевод на язык
+}

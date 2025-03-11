@@ -1,0 +1,15 @@
+{
+    "seo": {
+        "title": "My Blog",
+        "description": "A multilingual blog built with Next.js, Prisma, and next-intl."
+    },
+    "header": {
+        "home": "Home",
+        "about": "About"
+    },
+    "notFound": {
+        "title": "404 - Page Not Found",
+        "message": "Sorry, the page you are looking for does not exist.",
+        "backHome": "Go back home"
+    }
+}
